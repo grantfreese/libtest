@@ -5,10 +5,12 @@ class BuildTestConan(ConanFile):
 	name = "libtest"
 	settings = "os", "compiler", "build_type", "arch"
 	exports_sources = "*"
-	requires = ["cmake/3.19.4"]
 
 	def generate(self):
 		tc = CMakeToolchain(self)
+		tc.variables["CMAKE_SYSTEM_NAME"] = "Generic"
+		tc.variables["CMAKE_SYSTEM_PROCESSOR"] = "armv7"
+		tc.variables["CMAKE_TRY_COMPILE_TARGET_TYPE"] = "STATIC_LIBRARY"
 		tc.generate()
 		deps = CMakeDeps(self)
 		deps.generate()
@@ -25,4 +27,4 @@ class BuildTestConan(ConanFile):
 
 	def package_info(self):
 		self.cpp_info.libs = ["libtest"]
-		#self.cpp_info.includedirs = ["inc"]
+
