@@ -10,10 +10,6 @@ set(CMAKE_STATIC_LIBRARY_PREFIX "")
 # include directories set by conan
 include_directories(${CMAKE_INCLUDE_PATH})
 
-message("=======================================")
-message(${CMAKE_INCLUDE_PATH})
-message("=======================================")
-
 # file compile list managed manually here for now
 add_library(${CMAKE_PROJECT_NAME} libtest.cpp)
 
