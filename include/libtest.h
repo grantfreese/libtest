@@ -1,7 +1,5 @@
-#ifndef __LIBTEST_H_
-#define __LIBTEST_H_
+#pragma once
 
 //prototypes
 int libtest();
 
-#endif /* __LIBTEST_H_ */
