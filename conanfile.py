@@ -17,12 +17,12 @@ class BuildLibtestConan(ConanFile):
 		# copied into the build/install folder during local builds.
 		if(self.source_folder is None):
 			# local build
-			# eg, ~/work/libtest
-			tc.variables["CMAKE_INCLUDE_PATH"] = self.recipe_folder
+			# eg, ~/work/libtest/include/
+			tc.variables["CMAKE_INCLUDE_PATH"] = self.recipe_folder + "/include"
 		else:
 			# cache build
-			# eg, ~/.conan/data/libtest/0.0.1/aptera/sandbox/build/b1b...b9f6
-			tc.variables["CMAKE_INCLUDE_PATH"] = self.install_folder
+			# eg, ~/.conan/data/libtest/0.0.1/aptera/sandbox/build/b1b...b9f6/
+			tc.variables["CMAKE_INCLUDE_PATH"] = self.install_folder + "/include"
 
 		tc.generate()
 		deps = CMakeDeps(self)
@@ -34,10 +34,10 @@ class BuildLibtestConan(ConanFile):
 		cmake.build()
 
 	def package(self):
-		self.copy("include/*.h", dst="include", keep_path=True)
+		self.copy("include/*.h", keep_path=True)
 		self.copy("*.a", dst="lib", keep_path=False)
 
 	def package_info(self):
 		self.cpp_info.libs = ["libtest"]
-		self.cpp_info.includedirs = ["."]
+		self.cpp_info.includedirs = ["include"]
 

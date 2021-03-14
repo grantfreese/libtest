@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "include/libtest.h"
+#include "libtest/libtest.h"
 
 int libtest()
 {
